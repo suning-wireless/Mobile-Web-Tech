@@ -5,7 +5,7 @@
 
 筛选了一些基础知识和新的知识,去掉了一些老旧的方案.定期更新.
 
-## [内部整理常见问题](https://github.com/suning-wireless/Mobile-Web-Tech/issues)
+## [内部整理常见问题 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>](https://github.com/suning-wireless/Mobile-Web-Tech/issues)
 
 
 ## 来自[maxzhang](https://github.com/maxzhang "ava")的一些移动端经验总结干货
