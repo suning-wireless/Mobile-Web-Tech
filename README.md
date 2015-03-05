@@ -8,23 +8,6 @@
 ## [内部整理常见问题 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>](https://github.com/suning-wireless/Mobile-Web-Tech/issues)
 
 
-## 来自[maxzhang](https://github.com/maxzhang "ava")的一些移动端经验总结干货
-
-[移动Web单页应用开发实践——页面结构化](https://github.com/maxzhang/maxzhang.github.com/issues/8 "ava")
-
-[移动Web产品前端开发口诀——“快”](https://github.com/maxzhang/maxzhang.github.com/issues/1 "ava")
-
-[移动手机浏览器m3u8格式视频流播放支持程度测试](https://github.com/maxzhang/maxzhang.github.com/issues/19 "ava")
-
-
-## 本资料很多引用了指尖上的js系列，在此向作者表示感谢
-
-[对于Touch的处理](http://www.cnblogs.com/pifoo/archive/2011/05/23/webkit-touch-event-1.html "article1")
-
-[处理简单手势](http://www.cnblogs.com/pifoo/archive/2011/05/22/webkit-touch-event-2.html "article2")
-
-[处理复杂手势](http://www.cnblogs.com/pifoo/archive/2011/05/22/webkit-touch-event-3.html "article3")
-
 
 meta标签，这些meta标签在开发webapp时起到非常重要的作用
 
@@ -36,9 +19,6 @@ meta标签，这些meta标签在开发webapp时起到非常重要的作用
 ```
 
 第一个meta标签表示：强制让文档的宽度与设备的宽度保持1:1，并且文档最大的宽度比例是1.0，且不允许用户点击屏幕放大浏览；
-
-规范的写法应该是使用逗号分隔，参考:
-[tip1](http://developer.android.com/guide/webapps/targeting.html) | [tip2](http://developer.apple.com/library/safari/#documentation/appleapplications/reference/SafariHTMLRef/Articles/MetaTags.html)
 
 
 其中：
@@ -80,7 +60,7 @@ body{-webkit-overflow-scrolling: touch;}
 我一开始也使用，不过自从用了```-webkit-overflow-scrolling: ```touch;样式后，就完全可以抛弃第三方类库了，把它加在```body{}```区域，所有的```overflow```需要滚动的都可以生效了。
 
 
-## 页面描述
+## 页面描述(iOS)
 
 ```html
 <link rel="apple-touch-icon-precomposed" href="http://www.xxx.com/App_icon_114.png" />
@@ -145,6 +125,16 @@ body{-webkit-overflow-scrolling: touch;}
 
 ##事件 ： (请参考：指尖的下JS 系列文章)
 
+
+
+## 本资料很多引用了指尖上的js系列，在此向作者表示感谢
+
+[对于Touch的处理](http://www.cnblogs.com/pifoo/archive/2011/05/23/webkit-touch-event-1.html "article1")
+
+[处理简单手势](http://www.cnblogs.com/pifoo/archive/2011/05/22/webkit-touch-event-2.html "article2")
+
+[处理复杂手势](http://www.cnblogs.com/pifoo/archive/2011/05/22/webkit-touch-event-3.html "article3")
+
 ##手势事件
 * touchstart            //当手指接触屏幕时触发
 * touchmove           //当已经接触屏幕的手指开始移动后触发
@@ -175,7 +165,8 @@ body{-webkit-overflow-scrolling: touch;}
 * pageY　　　　 // Relative to the full page (includes scrolling)
 * target　　　　 // Node the touch event originated from
 * identifier　　   // An identifying number, unique to each touch event
- 
+
+
 
 * 屏幕旋转事件：onorientationchange
 添加屏幕旋转事件侦听，可随时发现屏幕旋转状态（左旋、右旋还是没旋）。例子：
@@ -223,13 +214,6 @@ function twoFingerScroll(ev) {
 };
 ```
 
-## 判断是否为iPhone：
-
-```js
-// 判断是否为 iPhone ：
-function isAppleMobile() {
-	return (navigator.platform.indexOf('iPad') != -1);
-};
 ```
 
 ## localStorage:
@@ -254,65 +238,7 @@ localStorage.removeItem('n'); // 删除名称为  n  的数据
 <td onclick="location.href='tel:122'"></td>
 ```
 
-##WebKit CSS:
-“盒模型”的具体描述性质的包围盒块内容，包括边界，填充等等。
 
-```
--webkit-border-bottom-left-radius: radius;
--webkit-border-top-left-radius: horizontal_radius vertical_radius;
--webkit-border-radius: radius;      //容器圆角
--webkit-box-sizing: sizing_model; 边框常量值：border-box/content-box
--webkit-box-shadow: hoff voff blur color; //容器阴影（参数分别为：水平X 方向偏移量；垂直Y 方向偏移量；高斯模糊半径值；阴影颜色值）
--webkit-margin-bottom-collapse: collapse_behavior; 常量值：collapse/discard/separate
--webkit-margin-start: width;
--webkit-padding-start: width;
--webkit-border-image: url(borderimg.gif) 25 25 25 25 round/stretch round/stretch;
--webkit-appearance: push-button;   //内置的CSS 表现，暂时只支持push-button
-```
- 
-
-
-“视觉效果”描述属性，调整的视觉效果块内容，包括溢出行为，调整行为，能见度，动画，变换，和过渡。
-
-```
-clip: rect(10px, 5px, 10px, 5px)
-resize: auto; 常量：auto/both/horizontal/none/vertical
-visibility: visible; 常量: collapse/hidden/visible
--webkit-transition: opacity 1s linear; 动画效果 ease/linear/ease-in/ease-out/ease-in-out
--webkit-backface-visibility: visibler; 常量：visible(默认值)/hidden
--webkit-box-reflect: right 1px; 镜向反转
--webkit-box-reflect: below 4px -webkit-gradient(linear, left top, left bottom,
-from(transparent), color-stop(0.5, transparent), to(white));
--webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));;   //CSS 遮罩/蒙板效果
--webkit-mask-attachment: fixed; 常量：fixed/scroll
--webkit-perspective: value; 常量：none(默认)
--webkit-perspective-origin: left top;
--webkit-transform: rotate(5deg);
--webkit-transform-style: preserve-3d; 常量：flat/preserve-3d; (2D 与3D)
-```
- 
-
-“生成的内容，自动编号，并列出”描述属性，允许您更改内容的一个组成部分，创建自动编号的章节和标题，和操纵的风格清单的内容。
-
-```
-content: “Item” counter(section) ” “;
-This resets the counter.
-First section
->two section
-three section
-counter-increment: section 1;
-counter-reset: section;
-```
- 
- 
-“颜色和背景”描述属性控制背景下的块级元素和颜色的文本内容的组成部分。
-
-```
--webkit-background-clip: content; 常量：border/content/padding/text
--webkit-background-origin: padding; 常量：border/content/padding/text
--webkit-background-size: 55px; 常量：length/length_x/length_y
-```
- 
 
 
 “文本”描述属性的特定文字样式，间距和自动滚屏。
@@ -873,8 +799,6 @@ PC上开启fiddler，并在设置中勾选“allow remote computers to connect�
 
 2. PC上开启fiddler，并在设置中勾选“allow remote computers to connect”
 
-![fiddler](img/01.png)
-
 3. 手机上设置代理，代理IP为PC的IP地址，端口为8888（这是fiddler的默认端口）。通常手机上可以直接设置代理，如果没有，可以去下载一个叫ProxyDroid的APP来实现代理的设置。
 
 4. 此时你会发现，用手机上网，走的其实是PC上的fiddler，所有的请求包都会在fiddler中列出来，配合willow使用，即可实现配host，甚至是反向代理的操作。
@@ -887,41 +811,7 @@ PC上开启fiddler，并在设置中勾选“allow remote computers to connect�
 
 ## 一些非常重要的工具类网站
 
-
-[各种奇妙的hack](http://browserhacks.com/ "各种奇妙的hack")
-
-[几乎所有设备的屏幕尺寸与像素密度表](http://en.wikipedia.org/wiki/List_of_displays_by_pixel_density "几乎所有设备的屏幕尺寸与像素密度表")
-
-[移动设备参数表](http://screensiz.es/phone "移动设备参数表")
-
-[ios端移动设备参数速查](http://ivomynttinen.com/blog/the-ios-design-cheat-sheet-volume-2/ "ios端移动设备参数速查")
-
-[浏览器兼容表](http://www.quirksmode.org/compatibility.html "浏览器兼容表")
-
-[移动设备查询器](https://deviceatlas.com/device-data/devices "移动设备查询器")
-
-[移动设备适配库](http://51degrees.codeplex.com/ "移动设备适配库")
-
-
-[viewport与设备尺寸在线检测器](https://deviceatlas.com/device-data/devices "viewport与设备尺寸在线检测器")
-
-[html5移动端兼容性速查](http://mobilehtml5.org/ "html5移动端兼容性速查")
-
-[在线转换字体](http://www.fontsquirrel.com/tools/webfont-generator "在线转换字体")
-
-[css3选择器测试](http://tools.css3.info/selectors-test/test.html "css3选择器测试")
-
-[兼容性速查表](http://caniuse.com/ "兼容性速查表")
-
-[浏览器的一些独特参数](http://www.browserscope.org/ "浏览器的一些独特参数")
-
-[各种各样的媒体查询收集](http://nmsdvid.com/snippets/ "各种各样的媒体查询收集")
-
-[css3动画在线制作器](http://ecd.tencent.com/css3/tools.html "css3动画在线制作器")
-
-[css3渐变在线制作器](http://www.colorzilla.com/gradient-editor/ "css3渐变在线制作器")
  
-
 [移动端手势表](http://ww1.sinaimg.cn/bmiddle/c2c57f68jw1e4fh7dmw12j20fi2w6qe1.jpg "移动端手势表")
 
 
